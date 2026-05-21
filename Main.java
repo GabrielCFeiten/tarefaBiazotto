@@ -31,15 +31,18 @@ public class Main {
                 true,
                 dadosCobranca);
 
+        DadosSeguro dadosSeguro = new DadosSeguro(
+                "Seguro Total",
+                "AP-889900",
+                "0800-123-456");
+
         Veiculo veiculo = new Veiculo(
                 "ABC-1234",
                 "Honda Civic",
                 "Prata",
                 LocalDateTime.of(2026, 6, 20, 9, 30),
                 LocalDateTime.of(2026, 6, 20, 12, 15),
-                "Seguro Total",
-                "AP-889900",
-                "0800-123-456");
+                dadosSeguro);
 
         Vaga vaga = new Vaga(
                 "A12",
@@ -52,6 +55,7 @@ public class Main {
                 vaga,
                 "Mariana Souza",
                 LocalDateTime.of(2026, 6, 20, 9, 0));
+
         RegistroPagamento pagamento = new RegistroPagamento(ticket, cliente, new BigDecimal("48.5"));
         OperacaoEstacionamento operacao = new OperacaoEstacionamento();
         CentralClientes centralClientes = new CentralClientes();
