@@ -9,23 +9,67 @@ public class Cliente {
     private int mesesComoCliente;
     private boolean mensalista;
 
+    // Dados de cobrança incorporados na própria classe
+    private String banco;
+    private String agencia;
+    private String conta;
+    private String metodoPagamentoPreferencial;
 
     public Cliente(String nome, String cpf, String telefone,
                    int pontosFidelidade, int mesesComoCliente, boolean mensalista,
+                   String banco, String agencia, String conta,
+                   String metodoPagamentoPreferencial) {
+
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
         this.pontosFidelidade = pontosFidelidade;
         this.mesesComoCliente = mesesComoCliente;
         this.mensalista = mensalista;
+
+        this.banco = banco;
+        this.agencia = agencia;
+        this.conta = conta;
+        this.metodoPagamentoPreferencial = metodoPagamentoPreferencial;
     }
 
     public void imprimirResumo() {
+
         System.out.println("Cliente: " + nome);
         System.out.println("CPF: " + cpf);
         System.out.println("Telefone: " + telefone);
         System.out.println("Pontos de fidelidade: " + pontosFidelidade);
         System.out.println("Mensalista: " + mensalista);
+        System.out.println("Cobrança: " + getDadosCobrancaFormatados());
+    }
+
+    public String getDadosCobrancaFormatados() {
+
+        return banco
+                + " | Agência " + agencia
+                + " | Conta " + conta
+                + " | Método preferencial: "
+                + metodoPagamentoPreferencial;
+    }
+
+    // Método de desconto mantido dentro da classe
+    // sem interferir nas outras funcionalidades
+    public int calcularDescontoCliente() {
+
+        if (mensalista && pontosFidelidade >= 4000) {
+            return 20;
+        }
+
+        if (mesesComoCliente >= 12
+                && pontosFidelidade >= 2000) {
+            return 10;
+        }
+
+        if (pontosFidelidade >= 1000) {
+            return 5;
+        }
+
+        return 0;
     }
 
     public String getNome() {
@@ -52,4 +96,19 @@ public class Cliente {
         return mensalista;
     }
 
+    public String getBanco() {
+        return banco;
+    }
+
+    public String getAgencia() {
+        return agencia;
+    }
+
+    public String getConta() {
+        return conta;
+    }
+
+    public String getMetodoPagamentoPreferencial() {
+        return metodoPagamentoPreferencial;
+    }
 }
