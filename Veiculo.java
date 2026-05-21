@@ -11,21 +11,17 @@ public class Veiculo {
     private LocalDateTime dataHoraEntrada;
     private LocalDateTime dataHoraSaidaPrevista;
 
-    private String seguradora;
-    private String numeroApolice;
-    private String telefoneAssistencia;
+    private DadosSeguro dadosSeguro;
 
     public Veiculo(String placa, String modelo, String cor,
                    LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaidaPrevista,
-                   String seguradora, String numeroApolice, String telefoneAssistencia) {
+                   DadosSeguro dadosSeguro) {
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
         this.dataHoraEntrada = dataHoraEntrada;
         this.dataHoraSaidaPrevista = dataHoraSaidaPrevista;
-        this.seguradora = seguradora;
-        this.numeroApolice = numeroApolice;
-        this.telefoneAssistencia = telefoneAssistencia;
+        this.dadosSeguro = dadosSeguro;
     }
 
     public void imprimirDados() {
@@ -34,12 +30,9 @@ public class Veiculo {
         System.out.println("Cor: " + cor);
         System.out.println("Entrada registrada: " + dataHoraEntrada);
         System.out.println("Saída prevista: " + dataHoraSaidaPrevista);
-        System.out.println("Seguro: " + getDadosSeguroFormatados());
+        System.out.println("Seguro: " + dadosSeguro.getFormatado());
     }
 
-    public String getDadosSeguroFormatados() {
-        return seguradora + " | Apólice " + numeroApolice + " | Assistência " + telefoneAssistencia;
-    }
 
     public String getPlaca() {
         return placa;
@@ -61,15 +54,5 @@ public class Veiculo {
         return dataHoraSaidaPrevista;
     }
 
-    public String getSeguradora() {
-        return seguradora;
-    }
-
-    public String getNumeroApolice() {
-        return numeroApolice;
-    }
-
-    public String getTelefoneAssistencia() {
-        return telefoneAssistencia;
-    }
+    public DadosSeguro getDadosSeguro() { return dadosSeguro; }
 }
