@@ -7,30 +7,78 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Endereco endereco = new Endereco("Avenida Brasil", "1500", "Centro", "Maringá", "PR", "87000-000");
+        Endereco endereco = new Endereco(
+                "Avenida Brasil", "1500", "Centro", "Maringá", "PR", "87000-000"
+        );
 
-        Estacionamento estacionamento = new Estacionamento("ParkTech Centro", "12.345.678/0001-90", endereco);
+        Estacionamento estacionamento = new Estacionamento(
+                "ParkTech Centro", "12.345.678/0001-90", endereco
+        );
 
-        Cliente cliente = new Cliente("Mariana Souza", "123.456.789-00", "(44) 99999-0000", 4200, 18, true, "Banco Acadêmico", "1234", "98765-0", "Pix");
+        Cliente cliente = new Cliente(
+                "Mariana Souza", "123.456.789-00", "(44) 99999-0000",
+                4200, 18, true,
+                "Banco Acadêmico", "1234", "98765-0", "Pix"
+        );
 
-        DadosSeguro seguro = new DadosSeguro("Seguro Total", "AP-889900", "0800-123-456");
+        DadosSeguro seguro = new DadosSeguro(
+                "Seguro Total", "AP-889900", "0800-123-456"
+        );
 
-        LocalDateTime entrada = LocalDateTime.of(2026, 6, 20, 9, 30);
+        LocalDateTime entrada       = LocalDateTime.of(2026, 6, 20,  9, 30);
         LocalDateTime saidaPrevista = LocalDateTime.of(2026, 6, 20, 12, 15);
 
-        Veiculo veiculo = new Veiculo("ABC-1234", "Honda Civic", "Prata", entrada, saidaPrevista, seguro);
+        Veiculo veiculo = new Veiculo(
+                "ABC-1234", "Honda Civic", "Prata",
+                entrada, saidaPrevista, seguro
+        );
 
-        Vaga vaga = new Vaga("A12", "Setor Azul", true, true, "Mariana Souza", LocalDateTime.of(2026, 6, 20, 9, 0));
+        Vaga vaga = new Vaga(
+                "A12", "Setor Azul", true, true,
+                "Mariana Souza", LocalDateTime.of(2026, 6, 20, 9, 0)
+        );
 
-        TicketEstacionamento ticket = new TicketEstacionamento("TCK-1001", veiculo, vaga, false, entrada, saidaPrevista);
 
-        ReservaVaga reserva = new ReservaVaga(vaga, "Mariana Souza", LocalDateTime.of(2026, 6, 20, 9, 0));
+        TicketEstacionamento ticket = new TicketEstacionamento(
+                "TCK-1001", veiculo, vaga, false, entrada, saidaPrevista
+        );
 
-        RegistroPagamento pagamento = new RegistroPagamento(ticket, cliente, new Valores(new BigDecimal("48.50")));
+        ReservaVaga reserva = new ReservaVaga(
+                vaga, "Mariana Souza", LocalDateTime.of(2026, 6, 20, 9, 0)
+        );
 
-        estacionamento.imprimirDados();
+        RegistroPagamento pagamento = new RegistroPagamento(
+                ticket, cliente, new Valores(new BigDecimal("48.50"))
+        );
 
+        PainelVagas painel = new PainelVagas();
+
+
+        System.out.println("CNPJ: " + estacionamento.getCnpj());
+        System.out.println("Endereço: " + endereco.getRua() + ", " + endereco.getNumero()
+                + " - " + endereco.getBairro());
         System.out.println("Cidade: " + endereco.getCidade() + " - " + endereco.getEstado());
         System.out.println("CEP: " + endereco.getCep());
+
+        System.out.println();
+        cliente.imprimirResumo();
+
+        System.out.println();
+        veiculo.imprimirDados();
+
+        System.out.println();
+        ticket.imprimirTicket();
+
+        System.out.println();
+        reserva.imprimirReserva();
+        System.out.println("Cliente vinculado: " + cliente.getNome());
+
+        System.out.println();
+        System.out.println("Minutos de permanência: " + ticket.calcularMinutosPermanencia());
+        System.out.println("Desconto do cliente: " + cliente.calcularDescontoCliente() + "%");
+        System.out.println("Status da vaga: " + painel.descreverStatus(vaga));
+
+        System.out.println();
+        pagamento.imprimirComprovante();
     }
 }

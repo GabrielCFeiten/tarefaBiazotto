@@ -11,7 +11,7 @@ public class DataHoraEstacionamento {
         this.dataHora = dataHora;
     }
 
-    // Formata a data e hora
+
     public String formatar() {
         return dataHora.getDayOfMonth() + "/"
                 + dataHora.getMonthValue() + "/"
@@ -20,7 +20,7 @@ public class DataHoraEstacionamento {
                 + String.format("%02d", dataHora.getMinute());
     }
 
-    // Define horário especial
+
     public boolean isHorarioEspecial() {
         return dataHora.getDayOfWeek() == DayOfWeek.SATURDAY
                 || dataHora.getDayOfWeek() == DayOfWeek.SUNDAY
@@ -28,7 +28,7 @@ public class DataHoraEstacionamento {
                 || dataHora.getHour() >= 22;
     }
 
-    // Retorna o LocalDateTime original
+
     public LocalDateTime getValorOriginal() {
         return dataHora;
     }

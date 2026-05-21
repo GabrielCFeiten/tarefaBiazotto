@@ -9,7 +9,6 @@ public class Cliente {
     private int mesesComoCliente;
     private boolean mensalista;
 
-    // Dados de cobrança incorporados na própria classe
     private String banco;
     private String agencia;
     private String conta;
@@ -52,8 +51,7 @@ public class Cliente {
                 + metodoPagamentoPreferencial;
     }
 
-    // Método de desconto mantido dentro da classe
-    // sem interferir nas outras funcionalidades
+
     public int calcularDescontoCliente() {
 
         if (mensalista && pontosFidelidade >= 4000) {
