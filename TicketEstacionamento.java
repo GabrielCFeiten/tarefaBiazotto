@@ -1,6 +1,6 @@
 package br.edu.refactoring.estacionamento;
 
-import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class TicketEstacionamento {
@@ -10,17 +10,29 @@ public class TicketEstacionamento {
     private Vaga vaga;
     private boolean perdido;
 
-    public TicketEstacionamento(String codigo, Veiculo veiculo, Vaga vaga, boolean perdido) {
+    private LocalDateTime dataHoraEntrada;
+    private LocalDateTime dataHoraSaidaPrevista;
+
+    public TicketEstacionamento(
+            String codigo,
+            Veiculo veiculo,
+            Vaga vaga,
+            boolean perdido,
+            LocalDateTime dataHoraEntrada,
+            LocalDateTime dataHoraSaidaPrevista) {
+
         this.codigo = codigo;
         this.veiculo = veiculo;
         this.vaga = vaga;
         this.perdido = perdido;
+        this.dataHoraEntrada = dataHoraEntrada;
+        this.dataHoraSaidaPrevista = dataHoraSaidaPrevista;
     }
 
     public void imprimirTicket() {
 
         DataHoraEstacionamento entrada =
-                new DataHoraEstacionamento(veiculo.getDataHoraEntrada());
+                new DataHoraEstacionamento(dataHoraEntrada);
 
         System.out.println("Ticket: " + codigo);
         System.out.println("Veículo: " + veiculo.getPlaca());
@@ -40,6 +52,15 @@ public class TicketEstacionamento {
         }
     }
 
+    public long calcularMinutosPermanencia() {
+        return Duration
+                .between(
+                        dataHoraEntrada,
+                        dataHoraSaidaPrevista
+                )
+                .toMinutes();
+    }
+
     public String getCodigo() {
         return codigo;
     }
@@ -57,10 +78,10 @@ public class TicketEstacionamento {
     }
 
     public LocalDateTime getDataHoraEntrada() {
-        return veiculo.getDataHoraEntrada();
+        return dataHoraEntrada;
     }
 
     public LocalDateTime getDataHoraSaidaPrevista() {
-        return veiculo.getDataHoraSaidaPrevista();
+        return dataHoraSaidaPrevista;
     }
 }

@@ -13,9 +13,14 @@ public class Veiculo {
 
     private DadosSeguro dadosSeguro;
 
-    public Veiculo(String placa, String modelo, String cor,
-                   LocalDateTime dataHoraEntrada, LocalDateTime dataHoraSaidaPrevista,
-                   DadosSeguro dadosSeguro) {
+    public Veiculo(
+            String placa,
+            String modelo,
+            String cor,
+            LocalDateTime dataHoraEntrada,
+            LocalDateTime dataHoraSaidaPrevista,
+            DadosSeguro dadosSeguro) {
+
         this.placa = placa;
         this.modelo = modelo;
         this.cor = cor;
@@ -25,14 +30,26 @@ public class Veiculo {
     }
 
     public void imprimirDados() {
+
         System.out.println("Veículo: " + modelo);
         System.out.println("Placa: " + placa);
         System.out.println("Cor: " + cor);
-        System.out.println("Entrada registrada: " + dataHoraEntrada);
-        System.out.println("Saída prevista: " + dataHoraSaidaPrevista);
-        System.out.println("Seguro: " + dadosSeguro.getFormatado());
-    }
 
+        System.out.println(
+                "Entrada registrada: " +
+                        dataHoraEntrada
+        );
+
+        System.out.println(
+                "Saída prevista: " +
+                        dataHoraSaidaPrevista
+        );
+
+        System.out.println(
+                "Seguro: " +
+                        dadosSeguro.getFormatado()
+        );
+    }
 
     public String getPlaca() {
         return placa;
@@ -54,5 +71,7 @@ public class Veiculo {
         return dataHoraSaidaPrevista;
     }
 
-    public DadosSeguro getDadosSeguro() { return dadosSeguro; }
+    public DadosSeguro getDadosSeguro() {
+        return dadosSeguro;
+    }
 }
