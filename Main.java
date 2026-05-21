@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
+
         Estacionamento estacionamento = new Estacionamento(
                 "ParkTech Centro",
                 "12.345.678/0001-90",
@@ -42,17 +43,28 @@ public class Main {
                 "A12",
                 "Setor Azul",
                 true,
-                true);
-
-        TicketEstacionamento ticket = new TicketEstacionamento("TCK-1001", veiculo, vaga, false);
-        ReservaVaga reserva = new ReservaVaga(
-                vaga,
+                true,
                 "Mariana Souza",
                 LocalDateTime.of(2026, 6, 20, 9, 0));
-        RegistroPagamento pagamento = new RegistroPagamento(ticket, cliente, new BigDecimal("48.5"));
-        OperacaoEstacionamento operacao = new OperacaoEstacionamento();
-        CentralClientes centralClientes = new CentralClientes();
-        PainelVagas painelVagas = new PainelVagas();
+
+        TicketEstacionamento ticket =
+                new TicketEstacionamento(
+                        "TCK-1001",
+                        veiculo,
+                        vaga,
+                        false);
+
+        RegistroPagamento pagamento =
+                new RegistroPagamento(
+                        ticket,
+                        cliente,
+                        new BigDecimal("48.5"));
+
+        OperacaoEstacionamento operacao =
+                new OperacaoEstacionamento();
+
+        CentralClientes centralClientes =
+                new CentralClientes();
 
         estacionamento.imprimirDados();
         System.out.println();
@@ -66,12 +78,20 @@ public class Main {
         ticket.imprimirTicket();
         System.out.println();
 
-        reserva.imprimirReserva();
+        System.out.println("Reserva da vaga:");
+        System.out.println("Cliente: " + vaga.getNomeClienteReserva());
+        System.out.println("Horário: " + vaga.getHorarioReserva());
         System.out.println();
 
-        System.out.println("Minutos de permanência: " + operacao.calcularMinutosPermanencia(ticket));
-        System.out.println("Desconto do cliente: " + centralClientes.calcularDescontoCliente(cliente) + "%");
-        System.out.println("Status da vaga: " + painelVagas.descreverStatus(vaga));
+        System.out.println("Minutos de permanência: "
+                + operacao.calcularMinutosPermanencia(ticket));
+
+        System.out.println("Desconto do cliente: "
+                + centralClientes.calcularDescontoCliente(cliente) + "%");
+
+        System.out.println("Status da vaga: "
+                + vaga.descreverStatus());
+
         System.out.println();
 
         pagamento.imprimirComprovante();
